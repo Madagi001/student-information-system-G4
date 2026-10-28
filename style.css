@@ -48,3 +48,130 @@ body {
     color: #64748b;
     font-size: 0.9rem;
 }
+
+/* ==========================================================
+   Member C: Student Records Table Styling
+   ========================================================== */
+.table-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.records-count {
+    font-size: 0.95rem;
+    color: #475569;
+}
+
+.records-count strong {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.students-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.925rem;
+    text-align: left;
+}
+
+.students-table th {
+    background: #f1f5f9;
+    color: #334155;
+    padding: 0.875rem 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid var(--border-color);
+    white-space: nowrap;
+}
+
+.students-table td {
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: #1e293b;
+    vertical-align: middle;
+}
+
+.students-table tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+.students-table tbody tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+.students-table tbody tr:hover {
+    background-color: #eff6ff;
+}
+
+.students-table code {
+    background: #e2e8f0;
+    color: #0f172a;
+    padding: 0.2rem 0.45rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-family: Consolas, 'Courier New', monospace;
+}
+
+/* Programme Badges */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.65rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    line-height: 1.2;
+}
+
+.badge-programme {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+/* Action Buttons */
+.action-cell {
+    white-space: nowrap;
+}
+
+.btn-sm {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.btn-delete {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.btn-delete:hover {
+    background-color: #ef4444;
+    color: #ffffff;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    color: #64748b;
+    background: #f8fafc;
+    border-radius: 6px;
+    margin-top: 1rem;
+}
+
