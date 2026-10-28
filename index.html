@@ -19,7 +19,51 @@
         <section id="registration-section" class="card">
             <h2>Register Student</h2>
             <div id="form-container">
-                <!-- Registration form will be developed here by Member A -->
+                <form id="student-form" class="student-form" autocomplete="off">
+                    <div class="form-group">
+                        <label for="studentName">Full Name <span class="required">*</span></label>
+                        <input type="text" id="studentName" name="studentName" placeholder="e.g. Amina Bello Yusuf" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="matricNumber">Matriculation Number <span class="required">*</span></label>
+                        <input type="text" id="matricNumber" name="matricNumber" placeholder="e.g. NEU/22/23/CSC/2004" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="programme">Programme <span class="required">*</span></label>
+                        <select id="programme" name="programme" required>
+                            <option value="" disabled selected>-- Select Academic Programme --</option>
+                            <option value="B.Sc. Computer Science">B.Sc. Computer Science</option>
+                            <option value="B.Sc. Software Engineering">B.Sc. Software Engineering</option>
+                            <option value="B.Sc. Cybersecurity">B.Sc. Cybersecurity</option>
+                            <option value="B.Sc. Information Technology">B.Sc. Information Technology</option>
+                            <option value="B.Sc. Data Science">B.Sc. Data Science</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="level">Study Level</label>
+                            <select id="level" name="level">
+                                <option value="100 Level">100 Level</option>
+                                <option value="200 Level">200 Level</option>
+                                <option value="300 Level" selected>300 Level</option>
+                                <option value="400 Level">400 Level</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group half-width">
+                            <label for="email">Student Email</label>
+                            <input type="email" id="email" name="email" placeholder="e.g. student@neu.edu.ng">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" id="btn-submit" class="btn btn-primary">Register Student</button>
+                        <button type="reset" id="btn-reset" class="btn btn-secondary">Clear Form</button>
+                    </div>
+                </form>
             </div>
         </section>
 
