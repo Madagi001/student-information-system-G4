@@ -1,10 +1,10 @@
 /**
  * Student Information Management System (SIMS)
- * Software Configuration & Management - Lab Test 1
- * Team Leader Integration & Feature Polishing
+ * Standard Production Logic & Data Management
+ * Department of Computer Science &bull; SCM Lab Test 1
  */
 
-// Initial Seed Data for immediate testing and grading demonstration
+// Default Seed Records
 const DEFAULT_STUDENTS = [
     {
         id: 1729000001,
@@ -53,24 +53,24 @@ const DEFAULT_STUDENTS = [
     }
 ];
 
-// Initialize State from LocalStorage
-function getStoredStudents() {
-    const data = localStorage.getItem('sims_students');
-    if (!data) {
+// Load Students from Local Storage
+function getInitialData() {
+    const stored = localStorage.getItem('sims_students');
+    if (!stored) {
         localStorage.setItem('sims_students', JSON.stringify(DEFAULT_STUDENTS));
         return [...DEFAULT_STUDENTS];
     }
     try {
-        const parsed = JSON.parse(data);
+        const parsed = JSON.parse(stored);
         return Array.isArray(parsed) ? parsed : [...DEFAULT_STUDENTS];
     } catch (e) {
         return [...DEFAULT_STUDENTS];
     }
 }
 
-let students = getStoredStudents();
+let students = getInitialData();
 
-// DOM Cache
+// DOM References
 const studentForm = document.getElementById('student-form');
 const tableBody = document.getElementById('students-table-body');
 const studentCountElement = document.getElementById('student-count');
@@ -80,51 +80,35 @@ const filterProgramme = document.getElementById('filterProgramme');
 const btnExportCsv = document.getElementById('btn-export-csv');
 const btnSeedData = document.getElementById('btn-seed-data');
 
-// Modal Elements
+// Modal References
 const modal = document.getElementById('student-modal');
 const modalContent = document.getElementById('modal-content');
 const modalClose = document.getElementById('modal-close');
 const modalOkBtn = document.getElementById('modal-ok-btn');
 
-// Toast Notification Helper
-function showToast(message, type = 'success') {
-    const container = document.getElementById('toast-container');
+// Alert Notice Helper
+function showAlert(message, isDanger = false) {
+    const container = document.getElementById('alert-container');
     if (!container) return;
 
-    const toast = document.createElement('div');
-    toast.className = `toast toast-${type}`;
-    
-    let icon = '✅';
-    if (type === 'danger') icon = '❌';
-    if (type === 'warning') icon = '⚠️';
+    const alertItem = document.createElement('div');
+    alertItem.className = `alert-item ${isDanger ? 'alert-danger' : ''}`;
+    alertItem.textContent = message;
 
-    toast.innerHTML = `<span>${icon}</span> <span>${escapeHtml(message)}</span>`;
-    container.appendChild(toast);
+    container.appendChild(alertItem);
 
     setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.transform = 'translateX(100%)';
-        toast.style.transition = 'all 0.3s ease';
-        setTimeout(() => toast.remove(), 300);
-    }, 3500);
+        alertItem.style.opacity = '0';
+        alertItem.style.transition = 'opacity 0.25s ease';
+        setTimeout(() => alertItem.remove(), 250);
+    }, 3200);
 }
 
-// Badge CSS Class Resolver
-function getBadgeClass(programme) {
-    if (!programme) return 'badge-default';
-    if (programme.includes('Computer Science')) return 'badge-cs';
-    if (programme.includes('Software Engineering')) return 'badge-se';
-    if (programme.includes('Cybersecurity')) return 'badge-cy';
-    if (programme.includes('Information Technology')) return 'badge-it';
-    if (programme.includes('Data Science')) return 'badge-ds';
-    return 'badge-default';
-}
-
-// Update Dashboard Statistics Cards
-function updateDashboardStats() {
-    const totalElem = document.getElementById('stat-total-students');
-    const progElem = document.getElementById('stat-total-programmes');
-    const latestElem = document.getElementById('stat-latest-student');
+// Update KPI Metrics
+function updateMetrics() {
+    const totalElem = document.getElementById('metric-total');
+    const progElem = document.getElementById('metric-programmes');
+    const latestElem = document.getElementById('metric-latest');
 
     if (totalElem) totalElem.textContent = students.length;
 
@@ -135,7 +119,7 @@ function updateDashboardStats() {
 
     if (latestElem) {
         if (students.length > 0) {
-            latestElem.textContent = students[0].name;
+            latestElem.textContent = students[0].matric;
             latestElem.title = `${students[0].name} (${students[0].matric})`;
         } else {
             latestElem.textContent = 'None';
@@ -143,7 +127,7 @@ function updateDashboardStats() {
     }
 }
 
-// Filter and Render Students in Table
+// Filter and Render Table Records
 function renderStudentTable() {
     if (!tableBody) return;
 
@@ -151,7 +135,7 @@ function renderStudentTable() {
     const selectedProgramme = filterProgramme ? filterProgramme.value : 'ALL';
 
     const filtered = students.filter(student => {
-        const matchesSearch = 
+        const matchesSearch =
             student.name.toLowerCase().includes(searchQuery) ||
             student.matric.toLowerCase().includes(searchQuery) ||
             (student.programme && student.programme.toLowerCase().includes(searchQuery)) ||
@@ -167,7 +151,7 @@ function renderStudentTable() {
     if (filtered.length === 0) {
         if (noRecordsMessage) noRecordsMessage.style.display = 'block';
         if (studentCountElement) studentCountElement.textContent = '0';
-        updateDashboardStats();
+        updateMetrics();
         return;
     }
 
@@ -176,55 +160,55 @@ function renderStudentTable() {
 
     filtered.forEach((student, index) => {
         const row = document.createElement('tr');
-        const badgeClass = getBadgeClass(student.programme);
-
         row.innerHTML = `
-            <td>${index + 1}</td>
+            <td style="color: var(--text-muted);">${index + 1}</td>
             <td><strong>${escapeHtml(student.name)}</strong></td>
             <td><code>${escapeHtml(student.matric)}</code></td>
-            <td><span class="badge ${badgeClass}">${escapeHtml(student.programme)}</span></td>
+            <td><span class="badge-tag">${escapeHtml(student.programme)}</span></td>
             <td>${escapeHtml(student.level || '300 Level')}</td>
             <td>${escapeHtml(student.registeredAt || 'N/A')}</td>
-            <td class="action-cell">
-                <button class="btn btn-sm btn-view" onclick="viewStudentDetails(${student.id})">View</button>
-                <button class="btn btn-sm btn-delete" onclick="deleteStudent(${student.id})">Delete</button>
+            <td style="text-align: right;">
+                <div class="row-actions">
+                    <button type="button" class="btn-link" onclick="viewStudentDetails(${student.id})">View</button>
+                    <button type="button" class="btn-link btn-link-danger" onclick="deleteStudent(${student.id})">Delete</button>
+                </div>
             </td>
         `;
         tableBody.appendChild(row);
     });
 
-    updateDashboardStats();
+    updateMetrics();
 }
 
-// View Student Profile in Modal
+// View Record Profile in Modal
 function viewStudentDetails(id) {
     const student = students.find(s => s.id === id);
     if (!student || !modal || !modalContent) return;
 
     modalContent.innerHTML = `
-        <div class="modal-profile-row">
-            <span class="label">Full Name:</span>
-            <span class="val">${escapeHtml(student.name)}</span>
+        <div class="profile-field">
+            <span class="k">Full Name</span>
+            <span class="v">${escapeHtml(student.name)}</span>
         </div>
-        <div class="modal-profile-row">
-            <span class="label">Matriculation Number:</span>
-            <span class="val"><code>${escapeHtml(student.matric)}</code></span>
+        <div class="profile-field">
+            <span class="k">Matriculation Number</span>
+            <span class="v"><code>${escapeHtml(student.matric)}</code></span>
         </div>
-        <div class="modal-profile-row">
-            <span class="label">Academic Programme:</span>
-            <span class="val">${escapeHtml(student.programme)}</span>
+        <div class="profile-field">
+            <span class="k">Academic Programme</span>
+            <span class="v">${escapeHtml(student.programme)}</span>
         </div>
-        <div class="modal-profile-row">
-            <span class="label">Level of Study:</span>
-            <span class="val">${escapeHtml(student.level || '300 Level')}</span>
+        <div class="profile-field">
+            <span class="k">Study Level</span>
+            <span class="v">${escapeHtml(student.level || '300 Level')}</span>
         </div>
-        <div class="modal-profile-row">
-            <span class="label">Student Email:</span>
-            <span class="val">${escapeHtml(student.email || 'None Provided')}</span>
+        <div class="profile-field">
+            <span class="k">Institutional Email</span>
+            <span class="v">${escapeHtml(student.email || 'None Provided')}</span>
         </div>
-        <div class="modal-profile-row">
-            <span class="label">Registration Date:</span>
-            <span class="val">${escapeHtml(student.registeredAt || 'N/A')}</span>
+        <div class="profile-field">
+            <span class="k">Registration Date</span>
+            <span class="v">${escapeHtml(student.registeredAt || 'N/A')}</span>
         </div>
     `;
 
@@ -235,23 +219,23 @@ function closeModal() {
     if (modal) modal.style.display = 'none';
 }
 
-// Delete Student Record with Confirmation
+// Delete Record
 function deleteStudent(id) {
     const student = students.find(s => s.id === id);
     if (!student) return;
 
-    if (confirm(`Are you sure you want to delete student "${student.name}" (${student.matric})?`)) {
+    if (confirm(`Confirm deletion of record for ${student.name} (${student.matric})?`)) {
         students = students.filter(s => s.id !== id);
         localStorage.setItem('sims_students', JSON.stringify(students));
-        showToast(`Record for ${student.name} deleted successfully!`, 'danger');
+        showAlert(`Record for ${student.matric} removed.`, true);
         renderStudentTable();
     }
 }
 
-// Export Records to CSV (Question 4 integration feature)
+// Export Records to CSV
 function exportToCSV() {
     if (students.length === 0) {
-        showToast('No records available to export!', 'warning');
+        showAlert('No records available to export.', true);
         return;
     }
 
@@ -275,15 +259,15 @@ function exportToCSV() {
     link.click();
     document.body.removeChild(link);
 
-    showToast('Student records exported to CSV successfully!', 'success');
+    showAlert('Student records exported to CSV.');
 }
 
-// Reset Sample Data
+// Reset Default Data
 function resetSampleData() {
-    if (confirm('Reset records back to default sample dataset?')) {
+    if (confirm('Restore default dataset? Any custom additions will be reset.')) {
         students = [...DEFAULT_STUDENTS];
         localStorage.setItem('sims_students', JSON.stringify(students));
-        showToast('Sample dataset restored successfully!', 'success');
+        showAlert('Default dataset restored.');
         renderStudentTable();
     }
 }
@@ -299,7 +283,7 @@ function escapeHtml(str) {
         .replace(/'/g, "&#039;");
 }
 
-// Form Submission (Member A & Member D)
+// Form Submission (Member A & D)
 if (studentForm) {
     studentForm.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -318,14 +302,14 @@ if (studentForm) {
 
         // Validation
         if (!name || !matric || !programme) {
-            showToast('Please fill all mandatory fields marked with *', 'danger');
+            showAlert('Please complete all required fields.', true);
             return;
         }
 
         // Duplicate Check
         const isDuplicate = students.some(s => s.matric.toUpperCase() === matric);
         if (isDuplicate) {
-            showToast(`Error: Matric Number "${matric}" already exists!`, 'danger');
+            showAlert(`Matriculation number "${matric}" is already registered.`, true);
             matricInput.focus();
             return;
         }
@@ -340,17 +324,16 @@ if (studentForm) {
             registeredAt: new Date().toISOString().split('T')[0]
         };
 
-        // Add to top of list
         students.unshift(newStudent);
         localStorage.setItem('sims_students', JSON.stringify(students));
 
-        showToast(`Student "${name}" registered successfully!`, 'success');
+        showAlert(`Student "${name}" registered successfully.`);
         studentForm.reset();
         renderStudentTable();
     });
 }
 
-// Event Listeners for Filters, Search, Modal, and Exports
+// Event Listeners
 if (searchInput) {
     searchInput.addEventListener('input', renderStudentTable);
 }
@@ -381,7 +364,7 @@ if (modal) {
     });
 }
 
-// Initial Boot
+// Initialize on Load
 document.addEventListener('DOMContentLoaded', () => {
     renderStudentTable();
 });

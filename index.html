@@ -1,113 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Information Management System</title>
+    <!-- Standard Production Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+    <!-- Institutional Top Bar -->
     <header class="app-header">
-        <div class="header-container">
-            <h1>Student Information Management System</h1>
-            <p class="subtitle">Department of Computer Science - Group 1</p>
+        <div class="header-inner">
+            <div class="brand-group">
+                <div class="brand-mark">SIMS</div>
+                <div class="brand-text">
+                    <h1>Student Information Management System</h1>
+                    <span class="subtext">Department of Computer Science &bull; Academic Portal</span>
+                </div>
+            </div>
+            <div class="meta-group">
+                <span class="meta-item"><strong>Course:</strong> SCM 301</span>
+                <span class="meta-divider">|</span>
+                <span class="meta-item"><strong>Group:</strong> Group 1</span>
+                <span class="meta-divider">|</span>
+                <span class="meta-item"><strong>Lead:</strong> Madagi001</span>
+            </div>
         </div>
     </header>
 
-    <main class="main-container">
-        <!-- Feature Member A & D: Registration Form Section -->
-        <section id="registration-section" class="card">
-            <h2>Register Student</h2>
-            <div id="form-container">
-                <form id="student-form" class="student-form" autocomplete="off">
-                    <div class="form-group">
-                        <label for="studentName">Full Name <span class="required">*</span></label>
-                        <input type="text" id="studentName" name="studentName" placeholder="e.g. Amina Bello Yusuf"
-                            required>
-                    </div>
+    <!-- Main Workspace -->
+    <div class="app-shell">
+        <!-- Overview Summary Bar -->
+        <section class="metrics-row" aria-label="System Metrics">
+            <div class="metric-card">
+                <span class="metric-label">Total Registered</span>
+                <span class="metric-number" id="metric-total">0</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-label">Active Programmes</span>
+                <span class="metric-number" id="metric-programmes">0</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-label">Latest Matric Number</span>
+                <span class="metric-number metric-text" id="metric-latest">None</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-label">System Status</span>
+                <span class="metric-status">
+                    <span class="status-indicator"></span> Synchronized
+                </span>
+            </div>
+        </section>
 
-                    <div class="form-group">
-                        <label for="matricNumber">Matriculation Number <span class="required">*</span></label>
-                        <input type="text" id="matricNumber" name="matricNumber" placeholder="e.g. NEU/22/23/CSC/2004"
-                            required>
-                    </div>
+        <!-- Main 2-Column Grid -->
+        <main class="content-grid">
+            <!-- Left: Registration Form (Member A & Member D) -->
+            <section class="panel form-panel" id="registration-section">
+                <div class="panel-header">
+                    <h2>Student Registration</h2>
+                    <span class="panel-tag">Form Module</span>
+                </div>
+                <div class="panel-body">
+                    <form id="student-form" class="standard-form" autocomplete="off">
+                        <div class="field">
+                            <label for="studentName">Full Student Name <span class="req">*</span></label>
+                            <input type="text" id="studentName" name="studentName" placeholder="e.g. Amina Bello Yusuf" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="programme">Programme <span class="required">*</span></label>
-                        <select id="programme" name="programme" required>
-                            <option value="" disabled selected>-- Select Academic Programme --</option>
-                            <option value="B.Sc. Computer Science">B.Sc. Computer Science</option>
-                            <option value="B.Sc. Software Engineering">B.Sc. Software Engineering</option>
-                            <option value="B.Sc. Cybersecurity">B.Sc. Cybersecurity</option>
-                            <option value="B.Sc. Information Technology">B.Sc. Information Technology</option>
-                            <option value="B.Sc. Data Science">B.Sc. Data Science</option>
-                        </select>
-                    </div>
+                        <div class="field">
+                            <label for="matricNumber">Matriculation Number <span class="req">*</span></label>
+                            <input type="text" id="matricNumber" name="matricNumber" placeholder="e.g. NEU/22/23/CSC/2004" required>
+                            <span class="field-hint">Institutional format: NEU/YY/YY/DEPT/ROLL</span>
+                        </div>
 
-                    <div class="form-row">
-                        <div class="form-group half-width">
-                            <label for="level">Study Level</label>
-                            <select id="level" name="level">
-                                <option value="100 Level">100 Level</option>
-                                <option value="200 Level">200 Level</option>
-                                <option value="300 Level" selected>300 Level</option>
-                                <option value="400 Level">400 Level</option>
+                        <div class="field">
+                            <label for="programme">Academic Programme <span class="req">*</span></label>
+                            <select id="programme" name="programme" required>
+                                <option value="" disabled selected>-- Select Academic Programme --</option>
+                                <option value="B.Sc. Computer Science">B.Sc. Computer Science</option>
+                                <option value="B.Sc. Software Engineering">B.Sc. Software Engineering</option>
+                                <option value="B.Sc. Cybersecurity">B.Sc. Cybersecurity</option>
+                                <option value="B.Sc. Information Technology">B.Sc. Information Technology</option>
+                                <option value="B.Sc. Data Science">B.Sc. Data Science</option>
                             </select>
                         </div>
 
-                        <div class="form-group half-width">
-                            <label for="email">Student Email</label>
-                            <input type="email" id="email" name="email" placeholder="e.g. student@neu.edu.ng">
+                        <div class="field-row">
+                            <div class="field col">
+                                <label for="level">Study Level <span class="req">*</span></label>
+                                <select id="level" name="level" required>
+                                    <option value="100 Level">100 Level</option>
+                                    <option value="200 Level">200 Level</option>
+                                    <option value="300 Level" selected>300 Level</option>
+                                    <option value="400 Level">400 Level</option>
+                                </select>
+                            </div>
+                            <div class="field col">
+                                <label for="email">Institutional Email</label>
+                                <input type="email" id="email" name="email" placeholder="e.g. student@neu.edu.ng">
+                            </div>
+                        </div>
+
+                        <div class="form-buttons">
+                            <button type="submit" id="btn-submit" class="btn btn-primary">Save Registration</button>
+                            <button type="reset" id="btn-reset" class="btn btn-default">Reset</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Right: Records Table (Member B & Member C) -->
+            <section class="panel table-panel" id="records-section">
+                <div class="panel-header">
+                    <h2>Academic Records Directory</h2>
+                    <span class="panel-tag">Directory Module</span>
+                </div>
+
+                <div class="panel-body">
+                    <!-- Standard Filter Controls (Integrated in Merge Conflict Resolution) -->
+                    <div class="control-bar">
+                        <div class="filter-group">
+                            <div class="search-wrap">
+                                <input type="text" id="searchInput" placeholder="Search by name, matric no, or programme...">
+                            </div>
+                            <select id="filterProgramme" class="filter-select" aria-label="Filter by Programme">
+                                <option value="ALL">All Programmes</option>
+                                <option value="B.Sc. Computer Science">Computer Science</option>
+                                <option value="B.Sc. Software Engineering">Software Engineering</option>
+                                <option value="B.Sc. Cybersecurity">Cybersecurity</option>
+                                <option value="B.Sc. Information Technology">Information Tech</option>
+                                <option value="B.Sc. Data Science">Data Science</option>
+                            </select>
+                        </div>
+
+                        <div class="action-group">
+                            <button type="button" id="btn-export-csv" class="btn btn-secondary btn-sm">Export to CSV</button>
+                            <button type="button" id="btn-seed-data" class="btn btn-default btn-sm">Reset Default Data</button>
                         </div>
                     </div>
 
-                    <div class="form-actions">
-                        <button type="submit" id="btn-submit" class="btn btn-primary">Register Student</button>
-                        <button type="reset" id="btn-reset" class="btn btn-secondary">Clear Form</button>
+                    <div class="table-info">
+                        <span>Showing <strong id="student-count">0</strong> record(s)</span>
                     </div>
-                </form>
-            </div>
-        </section>
 
-        <!-- Feature Member B & C: Records Table Section -->
-        <section id="records-section" class="card">
-            <h2>Student Records</h2>
-            <div id="table-container">
-                <div class="table-toolbar">
-                    <p class="records-count">Total Students: <strong id="student-count">0</strong></p>
-                </div>
-                <div class="table-responsive">
-                    <table id="students-table" class="students-table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Full Name</th>
-                                <th>Matriculation No.</th>
-                                <th>Programme</th>
-                                <th>Level</th>
-                                <th>Date Registered</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="students-table-body">
-                            <!-- Populated dynamically via script.js -->
-                        </tbody>
-                    </table>
-                </div>
-                <div id="no-records-message" class="empty-state">
-                    <p>No student records found. Register a new student above.</p>
-                </div>
-            </div>
-        </section>
-    </main>
+                    <!-- Clean Standard Data Grid -->
+                    <div class="table-frame">
+                        <table class="data-table" id="students-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 45px;">#</th>
+                                    <th>Student Name</th>
+                                    <th>Matriculation No.</th>
+                                    <th>Programme</th>
+                                    <th>Level</th>
+                                    <th>Date Registered</th>
+                                    <th style="width: 130px; text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="students-table-body">
+                                <!-- Populated dynamically via script.js -->
+                            </tbody>
+                        </table>
+                    </div>
 
+                    <!-- Empty State -->
+                    <div id="no-records-message" class="empty-state" style="display: none;">
+                        <p class="empty-title">No records found</p>
+                        <p class="empty-sub">No student records match the active search criteria.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Student Detail Modal -->
+    <div id="student-modal" class="modal-layer" style="display: none;">
+        <div class="modal-box">
+            <div class="modal-head">
+                <h3>Student Record Profile</h3>
+                <button type="button" id="modal-close" class="close-x" aria-label="Close dialog">&times;</button>
+            </div>
+            <div class="modal-content" id="modal-content">
+                <!-- Injected via script.js -->
+            </div>
+            <div class="modal-foot">
+                <button type="button" id="modal-ok-btn" class="btn btn-default btn-sm">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Banner / Inline Alert Container -->
+    <div id="alert-container" class="alert-layer"></div>
+
+    <!-- Formal Academic Footer -->
     <footer class="app-footer">
-        <p>&copy; 2026 Student Information Management System | Lab Test 1 Collaborative Project</p>
+        <div class="footer-inner">
+            <p><strong>Software Configuration and Management (SCM 301)</strong> &bull; Lab Test 1: Collaborative Software Development</p>
+            <p class="footer-meta">Repository: <code>student-information-system-group1</code> &bull; All changes version-controlled under Git &bull; &copy; 2026 Academic Session</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
 </body>
-
 </html>
