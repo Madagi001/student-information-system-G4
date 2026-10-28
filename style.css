@@ -1,12 +1,46 @@
-/* Base styles for Student Information Management System */
+/* ==========================================================
+   Student Information Management System (SIMS)
+   SCM Lab Test 1 - Collaborative Project Design System
+   Modern, Responsive Vanilla CSS Architecture
+   ========================================================== */
+
 :root {
-    --primary-color: #2563eb;
-    --background-color: #f8fafc;
-    --card-background: #ffffff;
-    --text-color: #1e293b;
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --primary-light: #eff6ff;
+    --primary-border: #bfdbfe;
+    
+    --secondary: #64748b;
+    --secondary-hover: #475569;
+    --secondary-light: #f1f5f9;
+    
+    --success: #16a34a;
+    --success-light: #dcfce7;
+    --warning: #d97706;
+    --warning-light: #fef3c7;
+    --danger: #dc2626;
+    --danger-light: #fee2e2;
+    
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
     --border-color: #e2e8f0;
+    --border-focus: #3b82f6;
+    
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+    
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.03);
+    
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Reset & Base */
 * {
     margin: 0;
     padding: 0;
@@ -14,174 +48,232 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    line-height: 1.6;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
 }
 
-.app-header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 1.5rem 1rem;
-    text-align: center;
+/* Announcement Top Banner */
+.top-banner {
+    background: #0f172a;
+    color: #94a3b8;
+    font-size: 0.8rem;
+    padding: 0.5rem 1.5rem;
+    border-bottom: 1px solid #1e293b;
 }
 
-.main-container {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    display: grid;
-    gap: 2rem;
-}
-
-.card {
-    background: var(--card-background);
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-}
-
-.app-footer {
-    text-align: center;
-    padding: 2rem 1rem;
-    color: #64748b;
-    font-size: 0.9rem;
-}
-
-/* ==========================================================
-   Member C: Student Records Table Styling
-   ========================================================== */
-.table-toolbar {
+.banner-content {
+    max-width: 1300px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.25rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid var(--border-color);
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
-.records-count {
-    font-size: 0.95rem;
-    color: #475569;
-}
-
-.records-count strong {
-    color: var(--primary-color);
+.badge-course {
+    background: #3b82f6;
+    color: #ffffff;
     font-weight: 700;
 }
 
-.table-responsive {
-    width: 100%;
-    overflow-x: auto;
-    border-radius: 8px;
+.badge-status {
+    background: #059669;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* App Header */
+.app-header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    color: #ffffff;
+    padding: 1.75rem 1.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+.header-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-icon {
+    font-size: 2.25rem;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-md);
+    padding: 0.35rem 0.65rem;
+    backdrop-filter: blur(8px);
+}
+
+.app-header h1 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    font-size: 0.875rem;
+    color: #bfdbfe;
+    margin-top: 0.2rem;
+}
+
+.team-tag {
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.4rem 0.9rem;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 600;
+    backdrop-filter: blur(4px);
+}
+
+/* Statistics Summary Bar */
+.stats-container {
+    max-width: 1300px;
+    margin: 1.5rem auto 0 auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+.stat-card {
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
 }
 
-.students-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.925rem;
-    text-align: left;
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-border);
 }
 
-.students-table th {
-    background: #f1f5f9;
-    color: #334155;
-    padding: 0.875rem 1rem;
+.stat-icon {
+    font-size: 1.75rem;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: var(--primary-light);
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.stat-label {
+    font-size: 0.775rem;
     font-weight: 600;
     text-transform: uppercase;
-    font-size: 0.75rem;
     letter-spacing: 0.05em;
-    border-bottom: 2px solid var(--border-color);
-    white-space: nowrap;
+    color: var(--text-muted);
 }
 
-.students-table td {
-    padding: 0.875rem 1rem;
+.stat-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.text-truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+/* Main Layout Grid */
+.main-container {
+    max-width: 1300px;
+    margin: 1.5rem auto 3rem auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 1.75rem;
+    align-items: start;
+}
+
+/* Card Containers */
+.card {
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.card-header {
+    padding: 1.25rem 1.5rem;
     border-bottom: 1px solid var(--border-color);
-    color: #1e293b;
-    vertical-align: middle;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fafafa;
 }
 
-.students-table tbody tr {
-    transition: background-color 0.15s ease;
+.card-header h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-main);
 }
 
-.students-table tbody tr:nth-child(even) {
-    background-color: #f8fafc;
-}
-
-.students-table tbody tr:hover {
-    background-color: #eff6ff;
-}
-
-.students-table code {
-    background: #e2e8f0;
-    color: #0f172a;
-    padding: 0.2rem 0.45rem;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    font-family: Consolas, 'Courier New', monospace;
-}
-
-/* Programme Badges */
-.badge {
-    display: inline-block;
-    padding: 0.25rem 0.65rem;
+.card-subtitle {
     font-size: 0.75rem;
-    font-weight: 600;
-    border-radius: 9999px;
-    line-height: 1.2;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
 }
 
-.badge-programme {
-    background-color: #dbeafe;
-    color: #1e40af;
-}
-
-/* Action Buttons */
-.action-cell {
-    white-space: nowrap;
-}
-
-.btn-sm {
-    padding: 0.35rem 0.75rem;
-    font-size: 0.8rem;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-weight: 500;
-}
-
-.btn-delete {
-    background-color: #fee2e2;
-    color: #b91c1c;
-}
-
-.btn-delete:hover {
-    background-color: #ef4444;
-    color: #ffffff;
-}
-
-/* Empty State */
-.empty-state {
-    text-align: center;
-    padding: 2.5rem 1rem;
-    color: #64748b;
-    background: #f8fafc;
-    border-radius: 6px;
-    margin-top: 1rem;
+.badge-feature {
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--radius-full);
 }
 
 /* ==========================================================
-   Member D: Student Registration Form Styling
+   Form Styling (Member D - CSS Styling for Registration Form)
    ========================================================== */
+#form-container {
+    padding: 1.5rem;
+}
+
 .student-form {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1.2rem;
 }
 
 .form-group {
@@ -191,37 +283,43 @@ body {
 }
 
 .form-group label {
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     font-weight: 600;
     color: #334155;
 }
 
 .form-group .required {
-    color: #dc2626;
+    color: var(--danger);
+}
+
+.form-hint {
+    font-size: 0.725rem;
+    color: var(--text-muted);
 }
 
 .form-group input,
 .form-group select {
     width: 100%;
-    padding: 0.75rem 0.9rem;
-    font-size: 0.95rem;
-    color: #1e293b;
+    padding: 0.7rem 0.85rem;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: var(--text-main);
     background-color: #ffffff;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-sm);
     outline: none;
-    transition: all 0.2s ease-in-out;
+    transition: var(--transition);
 }
 
 .form-group input:focus,
 .form-group select:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
 }
 
 .form-row {
     display: flex;
-    gap: 1rem;
+    gap: 0.75rem;
 }
 
 .half-width {
@@ -230,45 +328,469 @@ body {
 
 .form-actions {
     display: flex;
-    gap: 1rem;
+    gap: 0.75rem;
     margin-top: 0.5rem;
 }
 
+/* Buttons */
 .btn {
-    padding: 0.75rem 1.5rem;
-    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.7rem 1.25rem;
+    font-size: 0.875rem;
     font-weight: 600;
-    border-radius: 6px;
+    font-family: inherit;
+    border-radius: var(--radius-sm);
     border: none;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: var(--transition);
+    text-decoration: none;
 }
 
 .btn-primary {
-    background-color: var(--primary-color);
+    background-color: var(--primary);
     color: #ffffff;
-    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+    flex: 2;
 }
 
 .btn-primary:hover {
-    background-color: #1d4ed8;
-    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.3);
+    background-color: var(--primary-hover);
     transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(37, 99, 235, 0.25);
 }
 
 .btn-secondary {
-    background-color: #e2e8f0;
-    color: #334155;
+    background-color: var(--secondary-light);
+    color: var(--secondary-hover);
+    border: 1px solid var(--border-color);
+    flex: 1;
 }
 
 .btn-secondary:hover {
-    background-color: #cbd5e1;
+    background-color: #e2e8f0;
 }
 
-@media (max-width: 768px) {
+.btn-outline {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    color: #334155;
+    font-weight: 600;
+}
+
+.btn-outline:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+.btn-sm {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.775rem;
+    border-radius: var(--radius-sm);
+}
+
+/* ==========================================================
+   Table Styling (Member C - CSS Styling for Records Table)
+   ========================================================== */
+#table-container {
+    padding: 1.5rem;
+}
+
+.table-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.toolbar-search-filter {
+    display: flex;
+    gap: 0.75rem;
+    flex: 1;
+    min-width: 280px;
+    flex-wrap: wrap;
+}
+
+.search-box {
+    position: relative;
+    flex: 2;
+    min-width: 200px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    pointer-events: none;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.55rem 0.75rem 0.55rem 2.2rem;
+    font-size: 0.85rem;
+    font-family: inherit;
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    outline: none;
+    transition: var(--transition);
+}
+
+.search-box input:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.filter-box select {
+    padding: 0.55rem 0.85rem;
+    font-size: 0.85rem;
+    font-family: inherit;
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background-color: #ffffff;
+    outline: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-box select:focus {
+    border-color: var(--border-focus);
+}
+
+.toolbar-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.records-meta {
+    margin-bottom: 0.75rem;
+}
+
+.records-count {
+    font-size: 0.825rem;
+    color: var(--text-muted);
+}
+
+.records-count strong {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+}
+
+.students-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    text-align: left;
+}
+
+.students-table th {
+    background-color: #f8fafc;
+    color: #475569;
+    padding: 0.85rem 1rem;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid var(--border-color);
+    white-space: nowrap;
+}
+
+.students-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-main);
+    vertical-align: middle;
+}
+
+.students-table tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+.students-table tbody tr:nth-child(even) {
+    background-color: #fafbfc;
+}
+
+.students-table tbody tr:hover {
+    background-color: #eff6ff;
+}
+
+.students-table code {
+    background-color: #e2e8f0;
+    color: #0f172a;
+    padding: 0.2rem 0.45rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-weight: 600;
+}
+
+/* Badges for Programmes */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.65rem;
+    font-size: 0.725rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    line-height: 1.2;
+}
+
+.badge-cs { background: #dbeafe; color: #1e40af; }
+.badge-se { background: #dcfce7; color: #15803d; }
+.badge-cy { background: #fef3c7; color: #b45309; }
+.badge-it { background: #f3e8ff; color: #7e22ce; }
+.badge-ds { background: #e0e7ff; color: #4338ca; }
+.badge-default { background: #f1f5f9; color: #475569; }
+
+/* Table Action Buttons */
+.action-cell {
+    white-space: nowrap;
+    display: flex;
+    gap: 0.4rem;
+    justify-content: center;
+}
+
+.btn-view {
+    background: #e0f2fe;
+    color: #0369a1;
+}
+
+.btn-view:hover {
+    background: #0284c7;
+    color: #ffffff;
+}
+
+.btn-delete {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.btn-delete:hover {
+    background: #ef4444;
+    color: #ffffff;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 3.5rem 1.5rem;
+    color: var(--text-muted);
+}
+
+.empty-icon {
+    font-size: 3rem;
+    margin-bottom: 0.75rem;
+}
+
+.empty-state h3 {
+    font-size: 1.1rem;
+    color: var(--text-main);
+    margin-bottom: 0.35rem;
+}
+
+.empty-state p {
+    font-size: 0.875rem;
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+/* Modal Styling */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    padding: 1rem;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.modal-dialog {
+    background: #ffffff;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    max-width: 500px;
+    overflow: hidden;
+    animation: scaleIn 0.2s ease-out;
+}
+
+.modal-header {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8fafc;
+}
+
+.modal-header h3 {
+    font-size: 1.15rem;
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.modal-close-btn:hover {
+    color: var(--text-main);
+}
+
+.modal-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.modal-profile-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.modal-profile-row span.label {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.modal-profile-row span.val {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.modal-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    background: #f8fafc;
+}
+
+/* Toast Notifications */
+.toast-container {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.toast {
+    background: #ffffff;
+    border-radius: var(--radius-sm);
+    padding: 0.9rem 1.2rem;
+    box-shadow: var(--shadow-lg);
+    border-left: 4px solid var(--primary);
+    font-size: 0.875rem;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-width: 280px;
+    max-width: 400px;
+    animation: slideInRight 0.3s ease-out;
+}
+
+.toast.toast-success { border-left-color: var(--success); }
+.toast.toast-danger { border-left-color: var(--danger); }
+.toast.toast-warning { border-left-color: var(--warning); }
+
+/* Footer */
+.app-footer {
+    background: #0f172a;
+    color: #94a3b8;
+    padding: 2.5rem 1.5rem;
+    font-size: 0.85rem;
+    border-top: 1px solid #1e293b;
+}
+
+.footer-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.footer-col h4 {
+    color: #f8fafc;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+}
+
+.footer-col p {
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+}
+
+.footer-col code {
+    background: #1e293b;
+    color: #38bdf8;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+    .main-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .table-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .toolbar-search-filter {
+        flex-direction: column;
+    }
     .form-row {
         flex-direction: column;
     }
 }
-
-

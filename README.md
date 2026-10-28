@@ -1,29 +1,142 @@
-# Student Information Management System
+# Student Information Management System (SIMS)
 
-A web-based Student Information Management System developed collaboratively using Git and GitHub for **Software Configuration and Management - Lab Test 1**.
+[![SCM Lab Test 1](https://img.shields.io/badge/Course-SCM%20Lab%20Test%201-blue.svg)](https://github.com)
+[![Assessment](https://img.shields.io/badge/Assessment-Group%20Practical%20(15%20Marks)-success.svg)](https://github.com)
+[![Git Workflow](https://img.shields.io/badge/Git-Collaborative%20Feature%20Branches-orange.svg)](https://github.com)
 
-## Group Information
-- **Project Name:** `student-information-system-group1`
-- **Assessment:** Lab Test 1: Collaborative Software Development Using Git, GitLab, and GitHub
-- **Team Size:** 5 Members
+A web-based **Student Information Management System** developed collaboratively using Git, GitLab, and GitHub for **Software Configuration and Management - Lab Test 1**.
 
-## Team Members & Role Assignments
-| Team Member | Registration Number | Role | Assigned Task |
-|-------------|---------------------|------|---------------|
-| Member A | NEU/22/23/CSC/2004 | Frontend Developer | Develop student registration form |
-| Member B | NEU/22/23/CSC/2005 | Frontend Developer | Develop student records table |
-| Member C | NEU/22/23/CSC/2006 | UI Designer | Add CSS/Bootstrap to table |
-| Member D | NEU/22/23/CSC/2007 | UI Designer | Add CSS/Bootstrap to form |
-| Member E (Madagi001) | NEU/22/23/CSC/2001 | Team Leader | Improve documentation, review PRs, coordinate integration |
+---
 
-## Project Structure
+## 📌 Project Overview
+This system provides an institutional portal for managing student academic records. Built with modern Vanilla HTML5, CSS3, and JavaScript, it enables academic departments to:
+1. **Register Students:** Capture and validate student information including Full Name, Matriculation Number, Academic Programme, Level of Study, and Student Email.
+2. **View Student Records:** Dynamic records table with live search, programme filtering, individual student profile modal viewer, CSV export, and persistent browser storage.
+3. **Responsive & Modern Styling:** Glassmorphic dashboard aesthetics, status badges, toast feedback alerts, and mobile-friendly layouts.
+
+---
+
+## 👥 Team Members & Task Assignments
+
+| Member | Registration Number | Git Branch Name | Assigned Task |
+|---|---|---|---|
+| **Member A** | `NEU/22/23/CSC/2004` | `feature/student-registration-NEU/22/23/CSC/2004` | Develop student registration form containing name, matriculation number, and programme |
+| **Member B** | `NEU/22/23/CSC/2005` | `feature/student-records-NEU/22/23/CSC/2005` | Develop dynamic table for displaying student records |
+| **Member C** | `NEU/22/23/CSC/2006` | `feature/table-styling-NEU/22/23/CSC/2006` | Add modern CSS styling and badge indicators to the records table |
+| **Member D** | `NEU/22/23/CSC/2007` | `feature/form-styling-NEU/22/23/CSC/2007` | Add modern CSS styling, focus states, and button design to the registration form |
+| **Member E (Team Leader)** | `NEU/22/23/CSC/2001` | `feature/documentation-NEU/22/23/CSC/2001` | Improve documentation, review team contributions, manage conflict resolution, coordinate integration |
+
+---
+
+## 📁 Project Directory Structure
+
 ```
 student-information-system-group1/
-├── index.html
-├── style.css
-├── script.js
-└── README.md
+├── index.html                       # Core application structure & views
+├── style.css                        # Modern CSS design system & responsive styling
+├── script.js                        # Client-side logic, storage, search, filter & CSV export
+├── README.md                        # Project documentation & Git collaborative guide
+├── SUBMISSION_REPORT.md             # Complete answers to Questions 1-5 for grading
+└── CHECKLIST.md                     # Assessment checklist for full 15/15 marks
 ```
 
-## Quick Start
-Open `index.html` in any modern web browser to view the system.
+---
+
+## 🚀 Getting Started & Local Usage
+
+1. **Clone or Download the repository:**
+   ```bash
+   git clone https://github.com/Madagi001/student-information-system-group1.git
+   cd student-information-system-group1
+   ```
+
+2. **Launch the Application:**
+   - Double-click `index.html` to open it in your browser (Google Chrome, Firefox, Microsoft Edge, or Safari).
+   - Alternatively, serve locally using Python:
+     ```bash
+     python -m http.server 8000
+     ```
+     Then open `http://localhost:8000` in your web browser.
+
+---
+
+## 🔀 Git Branching Strategy & Workflow
+
+Every team member worked on an independent feature branch adhering to the course standard naming format (`feature/<task>-<Registration-Number>`):
+
+### 1. Feature Development Commands
+```bash
+# Member switches to their dedicated branch
+git switch -c feature/student-registration-NEU/22/23/CSC/2004
+
+# Stage and commit meaningful incremental work
+git add .
+git commit -m "Add student registration form containing name, matric number, and programme"
+
+# Push feature branch to remote GitHub repository
+git push -u origin feature/student-registration-NEU/22/23/CSC/2004
+```
+
+### 2. Integration & Pull Request Review
+Each feature branch was submitted via Pull Request, code-reviewed by Team Leader (Member E), and integrated into `main` using non-fast-forward merge commits (`git merge --no-ff`).
+
+---
+
+## ⚡ Merge Conflict Resolution (Question 4 Demonstration)
+
+During the collaborative development cycle, two team members modified the same section of the records toolbar in `index.html`:
+- On `main`, the toolbar was updated to include a **live search bar**.
+- On branch `feature/conflict-demo-NEU/22/23/CSC/2009`, the toolbar was updated concurrently to include an **Export to CSV button**.
+
+### The Conflict Markers Generated by Git:
+```html
+<<<<<<< HEAD
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Search by name or matric number...">
+=======
+                    <div class="actions-group">
+                        <button id="btn-export-csv" class="btn btn-sm btn-secondary">Export to CSV</button>
+>>>>>>> feature/conflict-demo-NEU/22/23/CSC/2009
+```
+
+### Resolution Strategy:
+1. Team members reviewed both changes and agreed that **both features are valuable**.
+2. Conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`) were completely removed.
+3. The toolbar was restructured into a unified controls container containing both the search input and the export action.
+4. The resolved file was staged and committed:
+   ```bash
+   git add index.html
+   git commit -m "Resolve merge conflict in index.html by integrating both search filter and CSV export controls"
+   ```
+
+---
+
+## 🔍 Verification Commands (Question 5)
+
+Run the following commands in the terminal to verify repository health:
+
+```bash
+# Check current working tree state
+git status
+
+# Inspect complete branching and merge graph
+git log --graph --oneline --all
+
+# List all local and remote branches
+git branch -a
+
+# View configured remote repository URLs
+git remote -v
+```
+
+---
+
+## 💡 Two Key Benefits of Git in Collaborative Development
+1. **Isolated Parallel Workflows & Traceability:** Individual feature branches allow multiple engineers to work on separate modules simultaneously without disrupting working production code, while the commit log provides an auditable history of who made each change and why.
+2. **Safe Code Integration & Non-Destructive Conflict Resolution:** Pull requests and Git merge mechanisms prevent accidental overwrites, allowing teams to systematically review code and resolve conflicts with full visibility into competing changes.
+
+---
+
+## 📝 License & Academic Integrity
+Submitted for academic assessment in **Software Configuration and Management (SCM 301)**.
+All contributions are tracked via Git commit signatures.

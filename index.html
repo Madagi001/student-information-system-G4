@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Information Management System</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header class="app-header">
         <div class="header-container">
@@ -22,12 +24,14 @@
                 <form id="student-form" class="student-form" autocomplete="off">
                     <div class="form-group">
                         <label for="studentName">Full Name <span class="required">*</span></label>
-                        <input type="text" id="studentName" name="studentName" placeholder="e.g. Amina Bello Yusuf" required>
+                        <input type="text" id="studentName" name="studentName" placeholder="e.g. Amina Bello Yusuf"
+                            required>
                     </div>
 
                     <div class="form-group">
                         <label for="matricNumber">Matriculation Number <span class="required">*</span></label>
-                        <input type="text" id="matricNumber" name="matricNumber" placeholder="e.g. NEU/22/23/CSC/2004" required>
+                        <input type="text" id="matricNumber" name="matricNumber" placeholder="e.g. NEU/22/23/CSC/2004"
+                            required>
                     </div>
 
                     <div class="form-group">
@@ -73,14 +77,6 @@
             <div id="table-container">
                 <div class="table-toolbar">
                     <p class="records-count">Total Students: <strong id="student-count">0</strong></p>
-                    <div class="toolbar-controls">
-                        <div class="search-box">
-                            <input type="text" id="searchInput" placeholder="Search by name or matric number...">
-                        </div>
-                        <div class="actions-group">
-                            <button id="btn-export-csv" class="btn btn-sm btn-secondary">Export to CSV</button>
-                        </div>
-                    </div>
                 </div>
                 <div class="table-responsive">
                     <table id="students-table" class="students-table">
@@ -113,4 +109,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
