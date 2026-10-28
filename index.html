@@ -71,7 +71,30 @@
         <section id="records-section" class="card">
             <h2>Student Records</h2>
             <div id="table-container">
-                <!-- Records table will be developed here by Member B -->
+                <div class="table-toolbar">
+                    <p class="records-count">Total Students: <strong id="student-count">0</strong></p>
+                </div>
+                <div class="table-responsive">
+                    <table id="students-table" class="students-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Full Name</th>
+                                <th>Matriculation No.</th>
+                                <th>Programme</th>
+                                <th>Level</th>
+                                <th>Date Registered</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="students-table-body">
+                            <!-- Populated dynamically via script.js -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="no-records-message" class="empty-state">
+                    <p>No student records found. Register a new student above.</p>
+                </div>
             </div>
         </section>
     </main>
