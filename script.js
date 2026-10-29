@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Validation
         if (!studentName || !matricNumber || !programme) {
-            showFeedback("Please fill out all fields.", "error");
+            showFeedback("Please fill out all required fields (*).", "error");
             return;
         }
 

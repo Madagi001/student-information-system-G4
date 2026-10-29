@@ -78,6 +78,12 @@ label {
     font-size: 14px;
 }
 
+.required-star {
+    color: #dc3545;
+    font-weight: bold;
+    margin-left: 2px;
+}
+
 input,
 select {
     width: 100%;

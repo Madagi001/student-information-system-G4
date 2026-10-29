@@ -20,7 +20,7 @@
             <div id="feedback" class="feedback-message" style="display: none;"></div>
             <form id="student-form">
                 <div class="form-group">
-                    <label for="student-name">Student Name</label>
+                    <label for="student-name">Student Name <span class="required-star">*</span></label>
                     <input 
                         type="text" 
                         id="student-name" 
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="matric-number">Matriculation Number</label>
+                    <label for="matric-number">Matriculation Number <span class="required-star">*</span></label>
                     <input 
                         type="text" 
                         id="matric-number" 
@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="programme">Programme</label>
+                    <label for="programme">Programme <span class="required-star">*</span></label>
                     <select id="programme" name="programme" required>
                         <option value="" disabled selected>-- Select Programme --</option>
                         <option value="Computer Science">Computer Science</option>
@@ -61,7 +61,7 @@
         <section class="card table-card" id="student-records">
             <div class="table-header-wrap">
                 <h2>Student Records</h2>
-                <span class="record-badge" id="record-count">3 Students Registered</span>
+                <span class="record-badge" id="record-count">4 Students Registered</span>
             </div>
 
             <div class="table-responsive">
@@ -92,6 +92,12 @@
                             <td>Alex Johnson</td>
                             <td>REG/2026/003</td>
                             <td>Information Technology</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Khadija Abubakar Bello</td>
+                            <td>NEU/23/24/SEN/00597</td>
+                            <td>Software Engineering</td>
                         </tr>
                     </tbody>
                 </table>
