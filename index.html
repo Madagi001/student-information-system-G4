@@ -3,38 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Records</title>
+    <title>Student Information Management System</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h2>Student Records</h2>
+    <header class="page-header">
+        <h1>Student Information Management System</h1>
+        <p class="subtitle">Collaborative Software Development Portal</p>
+    </header>
 
-    <table border="1" cellpadding="10" cellspacing="0">
-        <thead>
-            <tr>
-                <th>Student Name</th>
-                <th>Matriculation Number</th>
-                <th>Programme</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Suleiman Abba</td>
-                <td>REG/2026/001</td>
-                <td>Computer Science</td>
-            </tr>
-            <tr>
-                <td>Jane Smith</td>
-                <td>REG/2026/002</td>
-                <td>Software Engineering</td>
-            </tr>
-            <tr>
-                <td>Alex Johnson</td>
-                <td>REG/2026/003</td>
-                <td>Information Technology</td>
-            </tr>
-        </tbody>
-    </table>
+    <main class="main-container">
+        <!-- Member A & D: Registration Form Section -->
+        <section class="card form-card">
+            <h2>Register Student</h2>
+            <div id="feedback" class="feedback-message" style="display: none;"></div>
+            <form id="student-form">
+                <div class="form-group">
+                    <label for="student-name">Student Name</label>
+                    <input 
+                        type="text" 
+                        id="student-name" 
+                        name="studentName" 
+                        placeholder="e.g. Suleiman Abba" 
+                        required
+                    >
+                </div>
 
+                <div class="form-group">
+                    <label for="matric-number">Matriculation Number</label>
+                    <input 
+                        type="text" 
+                        id="matric-number" 
+                        name="matricNumber" 
+                        placeholder="e.g. REG/2026/004" 
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="programme">Programme</label>
+                    <select id="programme" name="programme" required>
+                        <option value="" disabled selected>-- Select Programme --</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Software Engineering">Software Engineering</option>
+                        <option value="Information Technology">Information Technology</option>
+                        <option value="Cyber Security">Cyber Security</option>
+                        <option value="Data Science">Data Science</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="submit-btn">Register Student</button>
+            </form>
+        </section>
+
+        <!-- Member B & C: Student Records Table Section -->
+        <section class="card table-card">
+            <div class="table-header-wrap">
+                <h2>Student Records</h2>
+                <span class="record-badge" id="record-count">3 Students Registered</span>
+            </div>
+
+            <div class="table-responsive">
+                <table id="student-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Student Name</th>
+                            <th>Matriculation Number</th>
+                            <th>Programme</th>
+                        </tr>
+                    </thead>
+                    <tbody id="student-table-body">
+                        <tr>
+                            <td>1</td>
+                            <td>Suleiman Abba</td>
+                            <td>REG/2026/001</td>
+                            <td>Computer Science</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Jane Smith</td>
+                            <td>REG/2026/002</td>
+                            <td>Software Engineering</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Alex Johnson</td>
+                            <td>REG/2026/003</td>
+                            <td>Information Technology</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
