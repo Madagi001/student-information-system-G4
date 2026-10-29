@@ -5,22 +5,26 @@
 // ========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-    const studentForm = document.getElementById("student-form");
-    const studentNameInput = document.getElementById("student-name");
-    const matricNumberInput = document.getElementById("matric-number");
+    const studentForm = document.getElementById("student-form") || document.getElementById("registrationForm");
+    const studentNameInput = document.getElementById("student-name") || document.getElementById("studentName");
+    const matricNumberInput = document.getElementById("matric-number") || document.getElementById("matricNumber");
     const programmeSelect = document.getElementById("programme");
     const tableBody = document.getElementById("student-table-body");
     const feedbackBox = document.getElementById("feedback");
     const recordCountBadge = document.getElementById("record-count");
 
+    if (!studentForm || !tableBody) return;
+
     // Helper: Update record count badge
     function updateRecordCount() {
+        if (!recordCountBadge) return;
         const count = tableBody.querySelectorAll("tr").length;
         recordCountBadge.textContent = `${count} Student${count === 1 ? "" : "s"} Registered`;
     }
 
     // Helper: Show status message
     function showFeedback(message, type = "success") {
+        if (!feedbackBox) return;
         feedbackBox.textContent = message;
         feedbackBox.className = `feedback-message ${type}`;
         feedbackBox.style.display = "block";
@@ -34,9 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
     studentForm.addEventListener("submit", (event) => {
         event.preventDefault();
 
-        const studentName = studentNameInput.value.trim();
-        const matricNumber = matricNumberInput.value.trim().toUpperCase();
-        const programme = programmeSelect.value;
+        const studentName = studentNameInput ? studentNameInput.value.trim() : "";
+        const matricNumber = matricNumberInput ? matricNumberInput.value.trim().toUpperCase() : "";
+        const programme = programmeSelect ? programmeSelect.value.trim() : "";
 
         // Validation
         if (!studentName || !matricNumber || !programme) {
@@ -71,7 +75,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Reset form and update metrics
         studentForm.reset();
-        programmeSelect.selectedIndex = 0;
+        if (programmeSelect.tagName === "SELECT") {
+            programmeSelect.selectedIndex = 0;
+        }
         updateRecordCount();
         showFeedback(`Student "${studentName}" registered successfully!`, "success");
     });
@@ -79,4 +85,3 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initialize initial count
     updateRecordCount();
 });
-

@@ -15,7 +15,7 @@
 
     <main class="main-container">
         <!-- Member A & D: Registration Form Section -->
-        <section class="card form-card">
+        <section class="card form-card" id="student-registration">
             <h2>Register Student</h2>
             <div id="feedback" class="feedback-message" style="display: none;"></div>
             <form id="student-form">
@@ -25,7 +25,7 @@
                         type="text" 
                         id="student-name" 
                         name="studentName" 
-                        placeholder="e.g. Suleiman Abba" 
+                        placeholder="Enter student name" 
                         required
                     >
                 </div>
@@ -36,7 +36,7 @@
                         type="text" 
                         id="matric-number" 
                         name="matricNumber" 
-                        placeholder="e.g. REG/2026/004" 
+                        placeholder="Enter matriculation number (e.g. REG/2026/004)" 
                         required
                     >
                 </div>
@@ -58,7 +58,7 @@
         </section>
 
         <!-- Member B & C: Student Records Table Section -->
-        <section class="card table-card">
+        <section class="card table-card" id="student-records">
             <div class="table-header-wrap">
                 <h2>Student Records</h2>
                 <span class="record-badge" id="record-count">3 Students Registered</span>
